@@ -7,6 +7,7 @@ private:
 	// singleton that manages registration/cleanup of window class
 	class WindowClass
 	{
+		// Interface functions
 	public:
 		static const char* GetName() noexcept;
 		static HINSTANCE GetInstance() noexcept;
