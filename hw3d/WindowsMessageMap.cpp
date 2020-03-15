@@ -12,6 +12,7 @@
 #define WM_UAHMEASUREMENUITEM 0x0094
 #define WM_UAHNCPAINTMENUPOPUP 0x0095
 
+// macro takes message and outputs the message and string of message
 #define REGISTER_MESSAGE(msg){msg,#msg}
 
 WindowsMessageMap::WindowsMessageMap()
@@ -200,6 +201,7 @@ WindowsMessageMap::WindowsMessageMap()
 		} )
 {}
 
+// returns a formatted string
 std::string WindowsMessageMap::operator()(DWORD msg, LPARAM lp, WPARAM wp) const
 {
 	constexpr int firstColWidth = 25;
