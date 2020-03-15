@@ -1,8 +1,12 @@
 #include <Windows.h>
+#include "WindowsMessageMap.h"
 
 // returns a 32-bit integer value
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	static WindowsMessageMap mm;
+	OutputDebugString(mm(msg, lParam, wParam).c_str() );
+
 	switch (msg)
 	{
 	case WM_CLOSE:
