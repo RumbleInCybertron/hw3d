@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "WindowsMessageMap.h"
+#include <sstream>
 
 // returns a 32-bit integer value
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -22,6 +23,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		if (wParam == 'F')
 		{
 			SetWindowText(hWnd, "Dangerfield");
+		}
+		break;
+	case WM_CHAR:
+		{
+			static std::string title;
+			title.push_back( (char) wParam);
+			SetWindowText(hWnd, title.c_str());
+		}
+		break;
+	case WM_LBUTTONDOWN:
+		{
+			POINTS pt = MAKEPOINTS(lParam); // extract the points
+			std::ostringstream oss;
+			oss << "(" << pt.x << "," << pt.y << ")"; // format the text
+			SetWindowText(hWnd, oss.str().c_str()); // put it into our window text
 		}
 		break;
 	}
